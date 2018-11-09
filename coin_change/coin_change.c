@@ -72,6 +72,11 @@ void main()
 
 	/* free */
 	for (i = 0; i < N; i++) {
+		for (j = 0; j < tree[i].num_prefix; j++) {
+			if (tree[i].prefix[j].subtree &&
+			    tree[i].prefix[j].subtree->is_leaf)
+				free(tree[i].prefix[j].subtree);
+		}
 		if (tree[i].prefix) {
 			free(tree[i].prefix);
 			tree[i].prefix = NULL;
