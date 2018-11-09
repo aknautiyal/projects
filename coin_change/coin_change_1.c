@@ -23,7 +23,7 @@ int traverse_tree_for_prefix(struct tree_t *t, int prefix_index)
 {
 	int i;
 	int count = 0;
-	
+
 	if (t->prefix[prefix_index -1].count != -1)
 		return t->prefix[prefix_index -1].count;
 	for (i = 0; i < prefix_index; i++) {
@@ -33,8 +33,8 @@ int traverse_tree_for_prefix(struct tree_t *t, int prefix_index)
 			count++;
 			t->prefix[i].count = count;
 		}
-		else {	
-			count+=traverse_tree_for_prefix(t->prefix[i].subtree, i + 1);  		
+		else {
+			count+=traverse_tree_for_prefix(t->prefix[i].subtree, i + 1);
 			t->prefix[i].count = count;
 		}
 	}
@@ -54,9 +54,9 @@ void main()
 		tree[i].num_prefix = M;
 		tree[i].is_leaf = 0;
 		for (j = 0; j < tree[i].num_prefix; j++) {
-			tree[i].prefix[j].count = -1;	
-			tree[i].prefix[j].val = set[j];		
-			tree[i].prefix[j].index = j;		
+			tree[i].prefix[j].count = -1;
+			tree[i].prefix[j].val = set[j];
+			tree[i].prefix[j].index = j;
 			if (tree[i].val == tree[i].prefix[j].val) {
 				struct tree_t *subtree = malloc(sizeof (struct tree_t));
 				subtree->val = tree[i].val;
@@ -68,7 +68,7 @@ void main()
 			}
 			if (tree[i].val > tree[i].prefix[j].val) {
 				int diff = tree[i].val - tree[i].prefix[j].val;
-				tree[i].prefix[j].subtree = &tree[diff - 1]; 			
+				tree[i].prefix[j].subtree = &tree[diff - 1];
 			}
 		}
 	}
